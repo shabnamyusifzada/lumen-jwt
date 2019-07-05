@@ -81,7 +81,7 @@ class UserTest extends \TestCase
             'Authorization: Bearer ' . $this->testShouldCreateToken()
         ];
         $parameters = [
-            'phone' => '+994513404328'
+            'phone' => '513404328'
         ];
         $this->post("/api/forgotpassword/5",$parameters,$header);
         $this->seeStatusCode(200);

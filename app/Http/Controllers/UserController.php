@@ -94,7 +94,7 @@ class UserController extends Controller
             'username' => 'required',
             'date_of_birth' => 'date_format:"d-m-Y|required',
             'salary_min' => 'numeric|required',
-            'phone' => 'required|min:10',
+            'phone' => 'required|min:10|numeric',
             'password' => 'required|min:8',
             'category' => 'required',
             'subcategory' => 'required',
@@ -186,7 +186,7 @@ class UserController extends Controller
     public function forgotPassword(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'phone' => 'required|min:10'
+            'phone' => 'required|min:10|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -196,7 +196,7 @@ class UserController extends Controller
         $phone = $request->phone;
 
 
-        send_message(new VerifyPhone($id, $phone));
+        send_message(new VerifyPhone($id, "+994".$phone));
 
         return response()->json(['response' => 'SMS-Ə BAXIB kodu yazın', 'success' => true], 200);
     }
